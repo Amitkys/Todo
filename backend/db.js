@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { boolean } = require('zod');
 
 async function main(){
     try{
@@ -7,6 +8,18 @@ async function main(){
     }catch(err){
         console.error(err);
     }
+}
+
+const todoSchema = mongoose.Schema({
+    title: String,
+    description: String,
+    isCompleted: boolean
+});
+
+const todo = mongoose.model('todos', todoSchema);
+
+module.exports = {
+    todo
 }
 
 
