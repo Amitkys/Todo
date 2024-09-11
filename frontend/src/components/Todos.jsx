@@ -1,10 +1,18 @@
-export function Todos(){
-    return (
+// object dis-structuring by : {todos}
+export function Todos({ todos }){
+    return(
         <div>
-            <hr />
-            <h1>Go to gym</h1>
-            <h3>bla bla bla</h3>
-            <button>Marks as Done</button>
+            {todos.map(function(todo){
+                return(
+                    <div>
+                        <h1>{todo.title}</h1>
+                        <h4>{todo.description}</h4>
+                        <button>{todo.isCompleted == true? "done":"mark as done"}</button>
+                    </div>
+                );
+            })}
         </div>
-    )
+    );
+
 }
+

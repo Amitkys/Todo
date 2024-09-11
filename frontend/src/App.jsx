@@ -4,7 +4,13 @@ function App(){
   return (
     <div>
       <CreateTodo></CreateTodo>
-      <Todos></Todos>
+      <Todos todos={[
+        {
+          title: 'this is title',
+          description: 'bla bla bla bla bla',
+          isCompleted: true
+        }
+      ]}></Todos>
     </div>
   )
 }
