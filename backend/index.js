@@ -42,7 +42,7 @@ app.get('/todo', async (req, res) => {
     res.json({todos});
 })
 
-app.put('/todos', (req, res) => {
+app.put('/completed', async(req, res) => {
     const updatePayload = req.body;
     const parsePayload = updateTodo.safeParse(updatePayload);
     if(!parsePayload.success){
@@ -50,8 +50,16 @@ app.put('/todos', (req, res) => {
             msg: 'you have sent wrong input',
         })
     }
-    
-})
+    await Todo.updateOne({
+        _id: updatePayload.id
+    }, {
+        isCompleted: true
+    });
+    res.json({
+        msg: 'Taks completed!'
+    });
+
+});
 
 
 
