@@ -7,7 +7,7 @@ const port = 3000;
 
 app.use(bodyParser.json());
 
-app.post('/todo', (req, res) => {
+app.post('/todo', async (req, res) => {
     // verify input, by zod
     const createPayload = req.body;
     const parsePayload = createTodo.safeParse(createPayload);
@@ -18,7 +18,8 @@ app.post('/todo', (req, res) => {
         return;
     }
     // put it into mongoDB
-    
+    console.log(createPayload.title);
+    console.log(createPayload.description);
 });
 
 app.put('/todos', (req, res) => {
