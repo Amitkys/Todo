@@ -37,6 +37,11 @@ app.post('/todo', async (req, res) => {
     })
 });
 
+app.get('/todo', async (req, res) => {
+    const todos = await Todo.find({});
+    res.json({todos});
+})
+
 app.put('/todos', (req, res) => {
     const updatePayload = req.body;
     const parsePayload = updateTodo.safeParse(updatePayload);
@@ -45,6 +50,7 @@ app.put('/todos', (req, res) => {
             msg: 'you have sent wrong input',
         })
     }
+    
 })
 
 
