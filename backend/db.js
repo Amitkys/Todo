@@ -13,7 +13,10 @@ async function main(){
 const todoSchema = mongoose.Schema({
     title: String,
     description: String,
-    isCompleted: boolean
+    isCompleted: {
+        type: Boolean,
+        default: false
+    }
 });
 
 const todo = mongoose.model('todos', todoSchema);

@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { createTodo, updateTodo } = require('./zod');
+const Todo = require('./db');
 const app = express();
 const port = 3000;
 
@@ -17,7 +18,7 @@ app.post('/todo', (req, res) => {
         return;
     }
     // put it into mongoDB
-
+    
 });
 
 app.put('/todos', (req, res) => {
