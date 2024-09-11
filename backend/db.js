@@ -1,15 +1,6 @@
 const mongoose = require('mongoose');
 const { boolean } = require('zod');
 
-async function main(){
-    try{
-        await mongoose.connect('mongodb://localhost:27017/todo');
-        console.log('connected to database');
-    }catch(err){
-        console.error(err);
-    }
-}
-
 const todoSchema = mongoose.Schema({
     title: String,
     description: String,
@@ -19,10 +10,10 @@ const todoSchema = mongoose.Schema({
     }
 });
 
-const todo = mongoose.model('todos', todoSchema);
+const Todo = mongoose.model('Todo', todoSchema);
 
 module.exports = {
-    todo
+    Todo
 }
 
 
@@ -39,4 +30,4 @@ module.exports = {
 
 
 
-main();
+// main();

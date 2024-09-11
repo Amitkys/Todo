@@ -1,11 +1,21 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 const { createTodo, updateTodo } = require('./zod');
-const Todo = require('./db');
+const {Todo} = require('./db');
 const app = express();
 const port = 3000;
 
 app.use(bodyParser.json());
+
+async function main(){
+    try{
+        await mongoose.connect('mongodb://localhost:27017/todo');
+        console.log('connected to database');
+    }catch(err){
+        console.error(err);
+    }
+}
 
 app.post('/todo', async (req, res) => {
     // verify input, by zod
@@ -18,8 +28,13 @@ app.post('/todo', async (req, res) => {
         return;
     }
     // put it into mongoDB
-    console.log(createPayload.title);
-    console.log(createPayload.description);
+    await Todo.create({
+        title: createPayload.title,
+        description: createPayload.description
+    });
+    res.json({
+        msg: 'Todo created.'
+    })
 });
 
 app.put('/todos', (req, res) => {
@@ -32,6 +47,9 @@ app.put('/todos', (req, res) => {
     }
 })
 
+
+
 app.listen(port, () => {
     console.log(`app is listening on ${port}`);
 })
+main();
