@@ -1,7 +1,8 @@
+import { CreateTodo } from "./components/CreateTodo"
 function App(){
   return (
     <div>
-      <h1>Hello World</h1>
+      <CreateTodo></CreateTodo>
     </div>
   )
 }
