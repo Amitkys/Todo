@@ -17,7 +17,7 @@ function App() {
 
     // Function to add new todo (to be passed to CreateTodo)
     const addTodo = (newTodo) => {
-        // console.log(newTodo);
+        
         setTodos(prevTodos => [...prevTodos, newTodo]);
     };
 
