@@ -1,19 +1,16 @@
-// object dis-structuring by : {todos}
-export function Todos({ todos }){
-    return(
+// Todos.jsx
+export function Todos({ todos }) {
+    return (
         <div>
-            {todos.map(function(todo){
-                return(
-                    <div>
-                        <h1>{todo.title}</h1>
-                        <h4>{todo.description}</h4>
-                        <button>{todo.isCompleted == true? "Done":"mark as done"}</button>
-                    </div>
-                );
-            })}
-            
+            {todos.length > 0 ? todos.map(todo => (
+                <div key={todo._id}> {/* Use unique key prop */}
+                    <h1>{todo.title}</h1>
+                    <h4>{todo.description}</h4>
+                    <button>{todo.isCompleted ? "Done" : "Mark as done"}</button>
+                </div>
+            )) : (
+                <div>No todos available</div>
+            )}
         </div>
     );
-
 }
-
